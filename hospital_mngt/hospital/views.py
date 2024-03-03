@@ -28,10 +28,10 @@ def Login(request):
         user = authenticate(username=u, password=p)
         try:
             if user.is_staff:
-                Login(request,user)
-                error = "No"
+                login(request,user)
+                error = "no"
             else:
-                error="Yes"
+                error="yes"
         except:
             error = "yes"
     d = {'error': error}
@@ -40,7 +40,6 @@ def Login(request):
 def Logout_admin(request):
     if not request.user.is_staff:
         return redirect('login')
-    
     logout(request)
-    return redirect('login')
+    return redirect('admin_login')
     
