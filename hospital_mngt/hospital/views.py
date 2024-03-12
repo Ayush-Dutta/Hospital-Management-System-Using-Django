@@ -57,3 +57,21 @@ def Delete_Doctor(request,pid):
     doctor = Doctor.objects.get(id = pid)
     doctor.delete()
     return redirect('view_doctor')
+
+
+def Add_Doctor(request):
+    error = ""
+    if not request.user.is_staff:
+        return redirect('login')
+    
+    if request.method == "POST":
+        n = request.POST['name']
+        m = request.POST['mobile']
+        sp = request.POST['special']
+        try:
+            Doctor.objects.create(Name=n, mobile=m, special = sp)
+            error="no"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request, 'add_doctor.html', d)
