@@ -4,15 +4,15 @@
 
 <div>
 
-    <h2 class="text-center">View Patient</h2>
+    <h2 class="text-center">View Appointment</h2>
     <table id="example" class="table table-hover">
         <thead>
             <tr>
-                <th>PatientID</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Mobile</th>
-                <th>Address</th>
+                <th>AppointmentID</th>
+                <th>DoctorName</th>
+                <th>PatientName</th>
+                <th>Date</th>
+                <th>Time</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -22,9 +22,8 @@
                 <td>{{i.id}}</td>
                 <td>{{i.Name}}</td>
                 <td>{{i.gender}}</td>
-                <td>{{i.mobile}}</td>
                 <td>{{i.address}}</td>
-                <td><a href="{%url 'delete_patient' i.id %}" 
+                <td><a href="{%url 'delete_appointment' i.id %}" 
                     onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" >Delete</a></td>
             </tr>
             {% endfor %}
