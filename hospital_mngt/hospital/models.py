@@ -9,7 +9,7 @@ class Doctor(models.Model):
     
 class Patient(models.Model):
     Name = models.CharField(max_length=50)
-    Gender = models.CharField(max_length=10)
+    gender = models.CharField(max_length=10)
     mobile = models.IntegerField(null=True)
     address = models.TextField()
     
