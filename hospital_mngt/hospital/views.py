@@ -14,6 +14,10 @@ def Contact(request):
     return render(request, 'contact.html')
 
 
+def Bill(request):
+    return render(request, 'bill.html')
+
+
 def Index(request):
     if not request.user.is_staff:
         return redirect('login')

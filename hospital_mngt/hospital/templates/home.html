@@ -2,13 +2,6 @@
 {% load static %}
 {%include 'navigation.html'%}
 
-<style>
-    .mydivstyle:hover {
-      box-shadow: 0 0 20px 0 rgba(0,0,0,0.5);
-      transform: translateY(-20px);
-  }
-  
-  </style>
 
 {% block content %}
 <div id="carousel-slider" class="carousel slide" data-ride="carousel">
@@ -91,26 +84,21 @@
             </h1>
             <p class="text-justify">
             <h5>Hospital Management system is a system where you can take any type of services. It is located in
-                Tulsipur Dang. It provides different types of services like radiography, different types sergons with
+                Kolkata. It provides different types of services like radiography, different types sergons with
                 highly reputed doctors.</h5>
             </p>
             <img src="">
         </div>
         <div class="col-md-4">
             <div class="container-fluid">
-                <br>
-                <button class="btn btn-lg btn-block"><a href="#about" class="nav-link"><i
-                            class="fa fa-calendar-minus-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;Request
-                        Appointments</a></button>
-                <br>
                 <button class="btn btn-lg btn-block"><a href="#doctors" class="nav-link"><i
                             class="fa fa-user-md"></i>&nbsp;&nbsp;&nbsp;&nbsp;Find
                         Doctors</a></button>
                 <br>
-                <button class="btn btn-lg btn-block"><a href="#about" class="nav-link"><i
+                <button class="btn btn-lg btn-block"><a href="https://tinyurl.com/2abjpz5v" class="nav-link"><i
                             class="fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;Location</a></button>
                 <br>
-                <button class="btn btn-lg btn-block"><a href="#about" class="nav-link"><i
+                <button class="btn btn-lg btn-block"><a href="tel:+9876543210" class="nav-link"><i
                             class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;&nbsp;Emergency
                         Contact</a></button>
             </div>
@@ -205,58 +193,59 @@
 
 
     <div class="row owl-carousel owl-theme">
-        <div class="card shadow text-center items mydivstyle">
+        <div class="card shadow text-center items " style="height: 159px;">
             <div class="card-img">
                 <img src="{% static 'images/10.jpeg' %}" alt=""
-                    style="margin-left: auto; margin-right: auto; width: 25%;">
+                style="margin: 0 auto; width: 15%; padding-top: 5px;">
             </div>
             <div class="card-body">
                 <p class="card-text">Emergency</p>
             </div>
         </div>
 
-        <div class="card shadow text-center items mydivstyle">
+        <div class="card shadow text-center items " style="height: 159px;">
             <div class="card-img">
-                <img src="{% static 'images/9.png' %}" alt="" style="margin-left: auto; margin-right: auto; width: 25%;">
+                <img src="{% static 'images/9.png' %}" alt="" style="margin: 0 auto; width: 15%; padding-top: 5px;" >
             </div>
             <div class="card-body">
                 <p class="card-text">Pharmacy</p>
             </div>
         </div>
 
-        <div class="card shadow text-center items mydivstyle">
+        <div class="card shadow text-center items " style="height: 159px;">
             <div class="card-img">
                 <img src="{% static 'images/11.jpg' %}" alt=""
-                    style="margin-left: auto; margin-right: auto; width: 25%;">
+                style="margin: 0 auto; width: 10%; padding-top: 5px;">
             </div>
             <div class="card-body">
                 <p class="card-text">Endoscopy</p>
             </div>
         </div>
 
-        <div class="card shadow text-center items mydivstyle">
+        <div class="card shadow text-center items" style="height: 159px;">
             <div class="card-img">
                 <img src="{% static 'images/12.jpg' %}" alt=""
-                    style="margin-left: auto; margin-right: auto; width: 25%;">
+                style="margin: 0 auto; width: 10%; padding-top: 5px;" >
             </div>
             <div class="card-body">
                 <p class="card-text">ECHO Services</p>
             </div>
         </div>
+        
 
-        <div class="card shadow text-center items mydivstyle">
+        <div class="card shadow text-center items" style="height: 159px;">
             <div class="card-img">
-                <img src="{% static 'images/13.jpg' %}" alt="" style="margin-left: auto; margin-right: auto; width: 25%;">
+                <img src="{% static 'images/13.jpg' %}" alt="" style="margin: 0 auto; width: 12%; padding-top: 5px;">
             </div>
             <div class="card-body">
                 <p class="card-text">Digital X-Ray</p>
             </div>
         </div>
 
-        <div class="card shadow text-center items mydivstyle">
+        <div class="card shadow text-center items" style="height: 159px;">
             <div class="card-img">
                 <img src="{% static 'images/14.jpg' %}" alt=""
-                    style="margin-left: auto; margin-right: auto; width: 25%;">
+                style="margin: 0 auto; width: 15%; padding-top: 5px;">
             </div>
             <div class="card-body">
                 <p class="card-text">Lab</p>
@@ -264,6 +253,7 @@
         </div>
     </div>
 </div>
+
 
 <!------------------------------End of Other services---------------------->
 
@@ -317,7 +307,7 @@
 
         <div class="card shadow text-center items">
             <div class="card-body profile-card">
-                <img class="img-thumbnail rounded-circle border-0" src="{% static 'images/5.jpg' %}" style="height: 30px; width: 50px ">
+                <img class="img-thumbnail rounded-circle border-0" src="{% static 'images/6.jpg' %}" style="height: 30px; width: 50px ">
                 <h4 class="card-title" style="font-size: 18px;">Dr.Abc</h4>
                 <h6 class="card-subtitle">Orthopedic Surgeon</h6>
                 <p class="card-text">MBBS, MS Orthopedic </p>
