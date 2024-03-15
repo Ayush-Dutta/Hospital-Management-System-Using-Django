@@ -37,6 +37,9 @@ python manage.py runserver
 
 Usage
 Admin Dashboard: Access the admin dashboard to manage system settings, user accounts, and other administrative tasks.
+
 Patient Registration: Register new patients and maintain their records with relevant medical information.
+
 Appointment Booking: Schedule appointments for patients with available healthcare providers.
+
 Billing and Invoicing: Generate bills and invoices for patients based on services provided and applicable charges.
