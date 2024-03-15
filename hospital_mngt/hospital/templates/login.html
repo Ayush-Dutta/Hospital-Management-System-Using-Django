@@ -1,10 +1,10 @@
-{%include 'base.html'%}
-{%include 'navigation.html'%}
+{% include 'base.html' %}
+{% include 'navigation.html' %}
 {% block content %}
-{% if error == "no"%}
+{% if error == "no" %}
 <script>
     alert('logged in successfully');
-    window.location = "{%url 'dashboard' %}";
+    window.location = "{% url 'dashboard' %}";
 </script>
 {% endif %}
 
@@ -15,21 +15,18 @@
 {% endif %}
 <div class="container">
     <h2 class="text-center">Admin Login</h2>
-    <form method="POST">
-        {% csrf_token%}
-        <label>Admin Name</label>
-        <input type="text" class="form-control" name="uname"/>
-        <label>Password</label>
-        <input type="password" class="form-control" name="pwd"/>
-
-        <input type="submit" value="login" class="form-control btn btn-primary"/>
-
+    <form method="POST" class="login-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="uname">Admin Name</label>
+            <input type="text" class="form-control" id="uname" name="uname" placeholder="Enter admin name">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
     </form>
-
 </div>
 {% endblock content %}
-{%include 'footer.html'%}
-
-
-
-
+{% include 'footer.html' %}
