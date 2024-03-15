@@ -5,10 +5,14 @@ Hospital Management System
 Introduction
 The Hospital Management System is a comprehensive software solution designed to streamline various administrative and operational tasks within a healthcare facility. This system aims to enhance efficiency, accuracy, and overall management of hospital resources, including patient records, appointments, staff management, inventory, and billing.
 
-Features
+_Features_
+
 **Patient Management**: Maintain detailed records of patients, including personal information, medical history, treatment plans, and prescriptions.
+
 **Appointment Scheduling**: Efficiently schedule and manage patient appointments with doctors and other healthcare providers.
+
 **Billing and Invoicing**: Generate accurate bills for patients based on services rendered, treatments, medications, and other relevant charges.
+
 **Mobile Access**: Provide convenient mobile access for healthcare professionals to manage tasks, access patient information, and communicate effectively.
 
 
