@@ -21,10 +21,15 @@
         {% csrf_token%}
         <label>Patient Name</label>
         <input type="text" class="form-control" name="name"/>
-        <label>Gender</label>
-        <input type="text" class="form-control" name="gender"/>
+        <label>Gender</label><br/>
+        <input type="radio"  name="gender" value="male"/>
+        <label for="html">Male</label><br>
+        <input type="radio" name="gender" value="female"/>
+        <label for="html">Female</label><br>
+        <input type="radio"  name="gender" value="Non-binary"/>
+        <label for="html">Non-binary</label><br>
         <label>Mobile</label>
-        <input type="text" class="form-control" name="mobile"/>
+        <input type="text" maxlength="10" class="form-control" name="mobile"/>
         <label>Address</label>
         <input type="text" class="form-control" name="address"/>
 

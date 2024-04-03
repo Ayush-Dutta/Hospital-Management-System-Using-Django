@@ -4,7 +4,7 @@ from django.db import models
 class Doctor(models.Model):
     Name = models.CharField(max_length=50)
     mobile = models.IntegerField()
-    special =models.CharField(max_length=50)
+    department =models.CharField(max_length=50)
     
     
     def __str__(self):
