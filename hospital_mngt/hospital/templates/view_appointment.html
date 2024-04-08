@@ -20,9 +20,10 @@
             {% for i in doc %}
             <tr>
                 <td>{{i.id}}</td>
-                <td>{{i.Name}}</td>
-                <td>{{i.gender}}</td>
-                <td>{{i.address}}</td>
+                <td>{{i.Doctor}}</td>
+                <td>{{i.Patient}}</td>
+                <td>{{i.date}}</td>
+                <td>{{i.time}}</td>
                 <td><a href="{%url 'delete_appointment' i.id %}" 
                     onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger" >Delete</a></td>
             </tr>
