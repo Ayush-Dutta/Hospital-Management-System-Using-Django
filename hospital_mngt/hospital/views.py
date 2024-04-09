@@ -191,3 +191,4 @@ def Bill(request):
         except:
             error = "yes"
     return render(request, 'bill.html', {'doctors': doctors, 'patients': patients})
+
