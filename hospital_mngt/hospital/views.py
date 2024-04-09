@@ -14,8 +14,8 @@ def Contact(request):
     return render(request, 'contact.html')
 
 
-def Bill(request):
-    return render(request, 'bill.html')
+#def Bill(request):
+    #return render(request, 'bill.html')
 
 
 def Index(request):
@@ -166,3 +166,29 @@ def Delete_Appointment(request,pid):
     appointment = Appointment.objects.get(id = pid)
     appointment.delete()
     return redirect('view_appointment')
+
+
+
+
+def Bill(request):
+    error = ""
+    if not request.user.is_staff:
+        return redirect('login')
+
+    doctors = Doctor.objects.all()
+    patients = Patient.objects.all()
+    
+    if request.method == "POST":
+        n = request.POST['doctor']
+        p = request.POST['patient']
+        da = request.POST['date']
+        t = request.POST['time']
+        doctor = Doctor.objects.filter(Name=n).first()
+        patient = Patient.objects.filter(Name=p).first()
+        try:
+            Appointment.objects.create(Doctor=doctor,Patient=patient,date=da,time=t)
+            error="no"
+        except:
+            error = "yes"
+    return render(request, 'bill.html', {'doctors': doctors, 'patients': patients})
+

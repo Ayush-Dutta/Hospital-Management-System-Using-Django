@@ -74,12 +74,27 @@
             </tr>
             <tr>
                 <td>Patient Name</td>
-                <td><input type="text" id="patient_name" name="patient_name"></td>
+                <td>
+                    <select id="patient_name" name="patient_name" class="form-control">
+                        <option value="" disabled selected>Select an option</option>
+                        {% for patient in patients %}
+                        <option value="{{ patient.Name }}">{{ patient.Name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Doctor Name</td>
-                <td><input type="text" id="doctor_name" name="doctor_name"></td>
+                <td>
+                    <select id="doctor_name" name="doctor_name" class="form-control">
+                        <option value="" disabled selected>Select an option</option>
+                        {% for doctor in doctors %}
+                        <option value="{{ doctor.Name }}">{{ doctor.Name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
             </tr>
+            
             <tr>
                 <td>Date Of Admission</td>
                 <td><input type="date" id="admission_date" name="admission_date"></td>

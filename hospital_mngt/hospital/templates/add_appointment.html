@@ -21,12 +21,14 @@
         {% csrf_token%}
         <label>Doctor Name</label>
         <select name="doctor" class="form-control">
+            <option value="" disabled selected>Select an option</option>
             {% for i in doctor %}
             <option value="{{ i.Name}}">{{i.Name}}</option>
             {% endfor %}
         </select>
         <label>Patient Name</label>
         <select name="patient" class="form-control">
+            <option value="" disabled selected>Select an option</option>
             {% for i in patient %}
             <option value="{{ i.Name}}">{{i.Name}}</option>
             {% endfor %}
