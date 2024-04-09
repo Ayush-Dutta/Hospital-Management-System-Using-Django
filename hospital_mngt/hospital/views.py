@@ -84,9 +84,9 @@ def Add_Doctor(request):
     if request.method == "POST":
         n = request.POST['name']
         m = request.POST['mobile']
-        sp = request.POST['special']
+        sp = request.POST['department']
         try:
-            Doctor.objects.create(Name=n, mobile=m, special = sp)
+            Doctor.objects.create(Name=n, mobile=m, department = sp)
             error="no"
         except:
             error = "yes"
@@ -191,4 +191,5 @@ def Bill(request):
         except:
             error = "yes"
     return render(request, 'bill.html', {'doctors': doctors, 'patients': patients})
+
 
