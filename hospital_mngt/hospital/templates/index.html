@@ -25,6 +25,7 @@
         padding: 30px; /* Add padding inside card */
         text-align: center; /* Center text inside card */
         transition: transform 0.3s ease; /* Add transition effect on hover */
+        cursor: pointer; /* Change cursor to pointer */
     }
     .card:hover {
         transform: translateY(-10px); /* Move card up on hover */
@@ -54,6 +55,7 @@
     .card i {
         font-size: 48px; /* Set font size for icons */
         margin-bottom: 20px; /* Add margin below icons */
+        color: black; /* Set icon color to black */
     }
 </style>
 {% block content %}
@@ -61,31 +63,31 @@
     <h1>Admin Dashboard</h1>
     <div class="row">
         <div class="col-md-4">
-            <div class="card red">
-                <i class="fas fa-user-md"></i>
-                <h2>{{ d }}</h2>
-                <a href="{% url 'view_doctor' %}">
+            <a href="{% url 'view_doctor' %}">
+                <div class="card red">
+                    <i class="fas fa-user-md"></i>
+                    <h2>{{ d }}</h2>
                     <h4>Doctors</h4>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="card green">
-                <i class="fas fa-user"></i>
-                <h2>{{ p }}</h2>
-                <a href="{% url 'view_patient' %}">
+            <a href="{% url 'view_patient' %}">
+                <div class="card green">
+                    <i class="fas fa-user"></i>
+                    <h2>{{ p }}</h2>
                     <h4>Patients</h4>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
         <div class="col-md-4">
-            <div class="card blue">
-                <i class="fas fa-calendar-alt"></i>
-                <h2>{{ a }}</h2>
-                <a href="{% url 'view_appointment' %}">
+            <a href="{% url 'view_appointment' %}">
+                <div class="card blue">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h2>{{ a }}</h2>
                     <h4>Appointments</h4>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

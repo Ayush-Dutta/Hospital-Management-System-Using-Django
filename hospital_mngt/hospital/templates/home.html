@@ -1,22 +1,58 @@
-{%include 'base.html'%}
+{% include 'base.html' %}
 {% load static %}
-{%include 'navigation.html'%}
-
+{% include 'navigation.html' %}
 
 {% block content %}
 <style>
-    .owl-carousel{
+    .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .carousel-caption h2,
+    .carousel-caption p {
+        margin-bottom: 10px;
+    }
+
+    #intro-text {
+        margin-top: 50px;
+    }
+
+    #departments h4,
+    #services h1 {
+        margin-top: 50px;
+    }
+
+    .owl-carousel {
         display: flex;
         flex-wrap: wrap;
-        width: 100%;
         justify-content: space-evenly;
     }
-    
-    .card{
-        width: 50%;
+
+    .card {
+        width: 45%;
+        margin-bottom: 30px;
     }
-    
-    </style>
+
+    .card-img img {
+        width: 70px;
+    }
+
+    .profile-card {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        transition: transform 0.3s;
+    }
+
+    .profile-card:hover {
+        transform: translateY(-5px);
+    }
+</style>
+
+<!-- Carousel -->
 <div id="carousel-slider" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
@@ -29,10 +65,7 @@
             <div class="carousel-caption text-white">
                 <div class="background-1">
                     <h2>Postoperative Care</h2>
-                    <p>Postoperative care is the care you receive after a surgical procedure. The type of postoperative
-                        care you need depends on the type of surgery you have, as well as your health history. It often
-                        includes pain management and wound care.
-                    </p>
+                    <p>Postoperative care is the care you receive after a surgical procedure...</p>
                     <button class="btn btn-light"><a href="#departments" class="nav-link">See All Services</a></button>
                 </div>
             </div>
@@ -82,10 +115,7 @@
     </a>
 </div>
 
-
-
 <!----------------------Introduction Section-------------->
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
@@ -128,12 +158,9 @@
     <div class="row">
         <div class="col-md-12">
             <h4 class="text-center text-primary">Departments</h4>
-            <h1 class="text-center">Medical services</h1>
+            <h1 class="text-center">Medical Services</h1>
         </div>
     </div>
-</div>
-
-<div class="container-fluid">
     <div class="row owl-carousel owl-theme">
         <div class="card shadow text-center items" style="height: 159px;">
             <div class="card-img">
@@ -188,7 +215,7 @@
             <div class="card-body">
                 <p class="card-text">Physician</p>
             </div>
-        </div>
+    </div>
 </div>
 
 <!----------------------Medical Services End--------------->
@@ -196,15 +223,12 @@
 
 
 <!-----------------------------Other Services Section Beginning-------------------->
-
 <div class="container-fluid" id="services">
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center">Other Services</h1>
         </div>
     </div>
-
-
     <div class="row owl-carousel owl-theme">
         <div class="card shadow text-center items " style="height: 159px;">
             <div class="card-img">
@@ -267,23 +291,7 @@
     </div>
 </div>
 
-
-<!------------------------------End of Other services---------------------->
-
-
-<!---------------------We team Section End---------------------->
-<div class="col-md-12">
-    <h1 class="text-center text-primary">Our Team of Experts</h1>
-
-</div>
-<div class="carousel-inner">
-    <img src=" " style="max-width: 100%;">
-</div>
-
-<!---------------------We team Section End---------------------->
-
 <!-------------------Meet Our Team Section------------------>
-
 <div class="container-fluid" id="doctors">
     <div class="row">
         <div class="col-md-12">
@@ -291,8 +299,6 @@
             <h1 class="text-center">Specialist Doctors</h1>
         </div>
     </div>
-
-
     <div class="row owl-carousel owl-theme">
         <div class="card shadow text-center items">
             <div class="card-body profile-card">
@@ -341,8 +347,6 @@
                 <a href="#" class="card-link"><i class="fa fa-linkedin"></i></a>
             </div>
         </div>
-
-        
     </div>
 </div>
 {% endblock content %}
