@@ -77,69 +77,78 @@
         </div>
 
         <!-- Form for OPD Billing -->
-<!-- Form for OPD Billing -->
-<form id="opd_billing_form">
-    <!-- Fields for OPD Billing -->
-    <table>
-        <tr>
-            <th>Description</th>
-            <th>Amount (INR)</th>
-        </tr>
-        <tr>
-            <td>Patient Name</td>
-            <td>
-                <select id="opd_patient_name" name="patient_name" class="form-control">
-                    <option value="" disabled selected>Select an option</option>
-                    {% for patient in patients %}
-                    <option value="{{ patient.Name }}">{{ patient.Name }}</option>
-                    {% endfor %}
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Doctor Name</td>
-            <td>
-                <select id="opd_doctor_name" name="doctor_name" class="form-control">
-                    <option value="" disabled selected>Select an option</option>
-                    {% for doctor in doctors %}
-                    <option value="{{ doctor.Name }}">{{ doctor.Name }}</option>
-                    {% endfor %}
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Date</td>
-            <td><input type="date" id="opd_date" name="opd_date"></td>
-        </tr>
-        <tr>
-            <td>Doctor Fees</td>
-            <td><input type="number" id="opd_doctor_charges" name="doctor_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
-        </tr>
-        <tr>
-            <td>Medicine Charges</td>
-            <td><input type="number" id="opd_medicine_charges" name="medicine_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
-        </tr>
-        <tr>
-            <td>Other Charges</td>
-            <td><input type="number" id="opd_other_charges" name="other_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
-        </tr>
-        <tr class="total">
-            <td>Total</td>
-            <td id="opd_total_amount">0.00</td>
-        </tr>
-    </table>
-    <!-- Add fields for OPD Billing here -->
-</form>
-
-<script>
-    // Populate date field with today's date
-    document.getElementById('opd_date').valueAsDate = new Date();
-</script>
-
-
+        <form id="opd_billing_form">
+            <!-- Fields for OPD Billing -->
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount (INR)</th>
+                </tr>
+                <tr>
+                    <td>Patient Name</td>
+                    <td>
+                        <select id="opd_patient_name" name="patient_name" class="form-control">
+                            <option value="" disabled selected>Select an option</option>
+                            {% for patient in patients %}
+                            <option value="{{ patient.Name }}">{{ patient.Name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Doctor Name</td>
+                    <td>
+                        <select id="opd_doctor_name" name="doctor_name" class="form-control">
+                            <option value="" disabled selected>Select an option</option>
+                            {% for doctor in doctors %}
+                            <option value="{{ doctor.Name }}">{{ doctor.Name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td><input type="date" id="opd_date" name="opd_date"></td>
+                </tr>
+                <tr>
+                    <td>Doctor Fees</td>
+                    <td><input type="number" id="opd_doctor_charges" name="doctor_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+                </tr>
+                <tr>
+                    <td>Medicine Charges</td>
+                    <td><input type="number" id="opd_medicine_charges" name="medicine_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+                </tr>
+                <tr>
+                    <td>Other Charges</td>
+                    <td><input type="number" id="opd_other_charges" name="other_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+                </tr>
+                <tr class="total">
+                    <td>Total</td>
+                    <td id="opd_total_amount">0.00</td>
+                </tr>
+            </table>
+            <!-- Remarks Section -->
+            <div class="remarks">
+                <h3>Diagnosed With:</h3>
+                <input type="checkbox" id="opd_diabetes" name="opd_diabetes" onclick="showOPDSuggestions('diabetes')">
+                <label for="opd_diabetes">Diabetes</label><br>
+                <input type="checkbox" id="opd_hypertension" name="opd_hypertension" onclick="showOPDSuggestions('hypertension')">
+                <label for="opd_hypertension">Hypertension</label><br>
+                <input type="checkbox" id="opd_asthma" name="opd_asthma" onclick="showOPDSuggestions('asthma')">
+                <label for="opd_asthma">Asthma</label><br>
+                <input type="checkbox" id="opd_cardiovascular_diseases" name="opd_cardiovascular_diseases" onclick="showOPDSuggestions('cardiovascular')">
+                <label for="opd_cardiovascular_diseases">Cardiovascular Problems</label><br>
+                <input type="checkbox" id="opd_cancer" name="opd_cancer" onclick="showOPDSuggestions('cancer')">
+                <label for="opd_cancer">Cancer</label><br>
+                <input type="checkbox" id="opd_chronic_respiratory_diseases" name="opd_chronic_respiratory_diseases" onclick="showOPDSuggestions('respiratory')">
+                <label for="opd_chronic_respiratory_diseases">Chronic Respiratory Problems</label><br>
+            </div>
+        </form>
+        
 
         <!-- Form for Indoor Billing -->
         <form id="indoor_billing_form" style="display: none;">
+            <!-- Fields for Indoor Billing -->
             <table>
                 <tr>
                     <th>Description</th>
@@ -167,7 +176,6 @@
                         </select>
                     </td>
                 </tr>
-                
                 <tr>
                     <td>Date Of Admission</td>
                     <td><input type="date" id="admission_date" name="admission_date"></td>
@@ -197,7 +205,29 @@
                     <td id="indoor_total_amount">0.00</td>
                 </tr>
             </table>
+            <!-- Remarks Section -->
+            <div class="remarks">
+                <h3>Diagnosed With:</h3>
+                <input type="checkbox" id="indoor_diabetes" name="indoor_diabetes" onclick="showSuggestions('diabetes')">
+                <label for="indoor_diabetes">Diabetes</label><br>
+                <input type="checkbox" id="indoor_hypertension" name="indoor_hypertension" onclick="showSuggestions('hypertension')">
+                <label for="indoor_hypertension">Hypertension</label><br>
+                <input type="checkbox" id="indoor_asthma" name="indoor_asthma" onclick="showSuggestions('asthma')">
+                <label for="indoor_asthma">Asthma</label><br>
+                <input type="checkbox" id="indoor_cardiovascular_diseases" name="cardiovascular_diseases" onclick="showSuggestions('cardiovascular')">
+                <label for="cardiovascular_diseases">Cardiovascular Problems</label><br>
+                <input type="checkbox" id="indoor_cancer" name="cancer" onclick="showSuggestions('cancer')">
+                <label for="cancer">Cancer</label><br>
+                <input type="checkbox" id="indoor_chronic_respiratory_diseases" name="chronic_respiratory_diseases" onclick="showSuggestions('respiratory')">
+                <label for="chronic_respiratory_diseases">Chronic Respiratory Problems</label><br>
+            </div>
         </form>
+
+        <!-- Text Box for Suggestions and Prescribed Medications -->
+        <div id="suggestions-box" style="display: none;">
+            <h3>Suggestions and Prescribed Medications:</h3>
+            <textarea id="suggestions-textarea" rows="4" cols="50" readonly></textarea>
+        </div>
         
         <!-- Print / Download PDF button -->
         <div class="button-container">
@@ -206,6 +236,10 @@
     </div>
 
     <script>
+        // Populate date field with today's date
+        document.getElementById('opd_date').valueAsDate = new Date();
+        document.getElementById('admission_date').valueAsDate = new Date();
+
         // Function to calculate total amount
         function calculateTotal() {
             var opdDoctorCharges = parseFloat(document.getElementById('opd_doctor_charges').value) || 0;
@@ -221,6 +255,80 @@
 
             document.getElementById('opd_total_amount').innerText = opdTotal.toFixed(2);
             document.getElementById('indoor_total_amount').innerText = indoorTotal.toFixed(2);
+        }
+        
+        // Function to show suggestions and prescribed medications for OPD billing
+        function showOPDSuggestions(disease) {
+            var suggestionsBox = document.getElementById('suggestions-box');
+            var suggestionsTextarea = document.getElementById('suggestions-textarea');
+
+            // Reset suggestions and prescribed medications textarea
+            suggestionsTextarea.value = '';
+
+            // Populate suggestions and prescribed medications based on selected disease for OPD billing
+            switch (disease) {
+                case 'diabetes':
+                    suggestionsTextarea.value = "Suggestions:\n- Maintain a healthy diet rich in fruits, vegetables, and whole grains.\n- Engage in regular physical activity.\n\nPrescribed Medications:\n- Metformin\n- Insulin";
+                    break;
+                case 'hypertension':
+                    suggestionsTextarea.value = "Suggestions:\n- Reduce sodium intake.\n- Engage in regular aerobic exercise.\n\nPrescribed Medications:\n- ACE inhibitors\n- Beta-blockers";
+                    break;
+                case 'asthma':
+                    suggestionsTextarea.value = "Suggestions:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\nPrescribed Medications:\n- Albuterol\n- Inhaled corticosteroids";
+                    break;
+                case 'cardiovascular':
+                    suggestionsTextarea.value = "Suggestions:\n- Follow a heart-healthy diet.\n- Exercise regularly.\n\nPrescribed Medications:\n- Statins\n- Beta-blockers";
+                    break;
+                case 'cancer':
+                    suggestionsTextarea.value = "Suggestions:\n- Follow treatment plan recommended by oncologist.\n- Seek support from friends and family.\n\nPrescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs";
+                    break;
+                case 'respiratory':
+                    suggestionsTextarea.value = "Suggestions:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\nPrescribed Medications:\n- Bronchodilators\n- Corticosteroids";
+                    break;
+                default:
+                    suggestionsTextarea.value = "No suggestions available.";
+                    break;
+            }
+
+            // Show the suggestions box
+            suggestionsBox.style.display = 'block';
+        }
+
+        // Function to show suggestions and prescribed medications for Indoor billing
+        function showSuggestions(disease) {
+            var suggestionsBox = document.getElementById('suggestions-box');
+            var suggestionsTextarea = document.getElementById('suggestions-textarea');
+
+            // Reset suggestions and prescribed medications textarea
+            suggestionsTextarea.value = '';
+
+            // Populate suggestions and prescribed medications based on selected disease for Indoor billing
+            switch (disease) {
+                case 'diabetes':
+                    suggestionsTextarea.value = "Suggestions:\n- Maintain a healthy diet rich in fruits, vegetables, and whole grains.\n- Engage in regular physical activity.\n\nPrescribed Medications:\n- Metformin\n- Insulin";
+                    break;
+                case 'hypertension':
+                    suggestionsTextarea.value = "Suggestions:\n- Reduce sodium intake.\n- Engage in regular aerobic exercise.\n\nPrescribed Medications:\n- ACE inhibitors\n- Beta-blockers";
+                    break;
+                case 'asthma':
+                    suggestionsTextarea.value = "Suggestions:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\nPrescribed Medications:\n- Albuterol\n- Inhaled corticosteroids";
+                    break;
+                case 'cardiovascular':
+                    suggestionsTextarea.value = "Suggestions:\n- Follow a heart-healthy diet.\n- Exercise regularly.\n\nPrescribed Medications:\n- Statins\n- Beta-blockers";
+                    break;
+                case 'cancer':
+                    suggestionsTextarea.value = "Suggestions:\n- Follow treatment plan recommended by oncologist.\n- Seek support from friends and family.\n\nPrescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs";
+                    break;
+                case 'respiratory':
+                    suggestionsTextarea.value = "Suggestions:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\nPrescribed Medications:\n- Bronchodilators\n- Corticosteroids";
+                    break;
+                default:
+                    suggestionsTextarea.value = "No suggestions available.";
+                    break;
+            }
+
+            // Show the suggestions box
+            suggestionsBox.style.display = 'block';
         }
 
         // Function to handle billing option selection
