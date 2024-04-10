@@ -67,69 +67,139 @@
             <img class="logo" src="{% static 'images/19.png' %}" alt="Hospital Logo" height="150px" width="150px">
             <h2>Hospital Bill</h2>
         </div>
-        <table>
-            <tr>
-                <th>Description</th>
-                <th>Amount (INR)</th>
-            </tr>
-            <tr>
-                <td>Patient Name</td>
-                <td>
-                    <select id="patient_name" name="patient_name" class="form-control">
-                        <option value="" disabled selected>Select an option</option>
-                        {% for patient in patients %}
-                        <option value="{{ patient.Name }}">{{ patient.Name }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Doctor Name</td>
-                <td>
-                    <select id="doctor_name" name="doctor_name" class="form-control">
-                        <option value="" disabled selected>Select an option</option>
-                        {% for doctor in doctors %}
-                        <option value="{{ doctor.Name }}">{{ doctor.Name }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-            
-            <tr>
-                <td>Date Of Admission</td>
-                <td><input type="date" id="admission_date" name="admission_date"></td>
-            </tr>
-            <tr>
-                <td>Date Of Discharge</td>
-                <td><input type="date" id="discharge_date" name="discharge_date"></td>
-            </tr>
-            <tr>
-                <td>Doctor Charges</td>
-                <td><input type="number" id="doctor_charges" name="doctor_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
-            </tr>
-            <tr>
-                <td>Bed Charges</td>
-                <td><input type="number" id="bed_charges" name="bed_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
-            </tr>
-            <tr>
-                <td>Medicine Charges</td>
-                <td><input type="number" id="medicine_charges" name="medicine_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
-            </tr>
-            <tr>
-                <td>Other Charges</td>
-                <td><input type="number" id="other_charges" name="other_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
-            </tr>
-            <!-- Add more fields as needed -->
-            <!-- For example: -->
-            <!-- <tr>
-                <td>Other Charges</td>
-                <td><input type="number" id="other_charges" name="other_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
-            </tr> -->
-            <tr class="total">
-                <td>Total</td>
-                <td id="total_amount">0.00</td>
-            </tr>
-        </table>
+        
+        <!-- Radio buttons for billing option selection -->
+        <div class="billing-option">
+            <input type="radio" id="opd_billing" name="billing_option" value="opd" checked>
+            <label for="opd_billing">OPD Billing</label>
+            <input type="radio" id="indoor_billing" name="billing_option" value="indoor">
+            <label for="indoor_billing">Indoor Billing</label>
+        </div>
+
+        <!-- Form for OPD Billing -->
+<!-- Form for OPD Billing -->
+<form id="opd_billing_form">
+    <!-- Fields for OPD Billing -->
+    <table>
+        <tr>
+            <th>Description</th>
+            <th>Amount (INR)</th>
+        </tr>
+        <tr>
+            <td>Patient Name</td>
+            <td>
+                <select id="opd_patient_name" name="patient_name" class="form-control">
+                    <option value="" disabled selected>Select an option</option>
+                    {% for patient in patients %}
+                    <option value="{{ patient.Name }}">{{ patient.Name }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Doctor Name</td>
+            <td>
+                <select id="opd_doctor_name" name="doctor_name" class="form-control">
+                    <option value="" disabled selected>Select an option</option>
+                    {% for doctor in doctors %}
+                    <option value="{{ doctor.Name }}">{{ doctor.Name }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td><input type="date" id="opd_date" name="opd_date"></td>
+        </tr>
+        <tr>
+            <td>Doctor Fees</td>
+            <td><input type="number" id="opd_doctor_charges" name="doctor_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+        </tr>
+        <tr>
+            <td>Medicine Charges</td>
+            <td><input type="number" id="opd_medicine_charges" name="medicine_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+        </tr>
+        <tr>
+            <td>Other Charges</td>
+            <td><input type="number" id="opd_other_charges" name="other_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+        </tr>
+        <tr class="total">
+            <td>Total</td>
+            <td id="opd_total_amount">0.00</td>
+        </tr>
+    </table>
+    <!-- Add fields for OPD Billing here -->
+</form>
+
+<script>
+    // Populate date field with today's date
+    document.getElementById('opd_date').valueAsDate = new Date();
+</script>
+
+
+
+        <!-- Form for Indoor Billing -->
+        <form id="indoor_billing_form" style="display: none;">
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount (INR)</th>
+                </tr>
+                <tr>
+                    <td>Patient Name</td>
+                    <td>
+                        <select id="indoor_patient_name" name="patient_name" class="form-control">
+                            <option value="" disabled selected>Select an option</option>
+                            {% for patient in patients %}
+                            <option value="{{ patient.Name }}">{{ patient.Name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Doctor Name</td>
+                    <td>
+                        <select id="indoor_doctor_name" name="doctor_name" class="form-control">
+                            <option value="" disabled selected>Select an option</option>
+                            {% for doctor in doctors %}
+                            <option value="{{ doctor.Name }}">{{ doctor.Name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Date Of Admission</td>
+                    <td><input type="date" id="admission_date" name="admission_date"></td>
+                </tr>
+                <tr>
+                    <td>Date Of Discharge</td>
+                    <td><input type="date" id="discharge_date" name="discharge_date" onchange="validateDischargeDate()"></td>
+                </tr>
+                <tr>
+                    <td>Doctor Charges</td>
+                    <td><input type="number" id="indoor_doctor_charges" name="doctor_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+                </tr>
+                <tr>
+                    <td>Bed Charges</td>
+                    <td><input type="number" id="bed_charges" name="bed_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+                </tr>
+                <tr>
+                    <td>Medicine Charges</td>
+                    <td><input type="number" id="indoor_medicine_charges" name="medicine_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+                </tr>
+                <tr>
+                    <td>Other Charges</td>
+                    <td><input type="number" id="indoor_other_charges" name="other_charges" min="0" step="0.01" onchange="calculateTotal()"></td>
+                </tr>
+                <tr class="total">
+                    <td>Total</td>
+                    <td id="indoor_total_amount">0.00</td>
+                </tr>
+            </table>
+        </form>
+        
+        <!-- Print / Download PDF button -->
         <div class="button-container">
             <button class="print-button" onclick="printBill()">Print / Download PDF</button>
         </div>
@@ -138,28 +208,53 @@
     <script>
         // Function to calculate total amount
         function calculateTotal() {
-            var doctorCharges = parseFloat(document.getElementById('doctor_charges').value) || 0;
+            var opdDoctorCharges = parseFloat(document.getElementById('opd_doctor_charges').value) || 0;
+            var opdMedicineCharges = parseFloat(document.getElementById('opd_medicine_charges').value) || 0;
+            var opdOtherCharges = parseFloat(document.getElementById('opd_other_charges').value) || 0;
+            var indoorDoctorCharges = parseFloat(document.getElementById('indoor_doctor_charges').value) || 0;
+            var indoorMedicineCharges = parseFloat(document.getElementById('indoor_medicine_charges').value) || 0;
+            var indoorOtherCharges = parseFloat(document.getElementById('indoor_other_charges').value) || 0;
             var bedCharges = parseFloat(document.getElementById('bed_charges').value) || 0;
-            var medicineCharges = parseFloat(document.getElementById('medicine_charges').value) || 0;
-            var otherCharges = parseFloat(document.getElementById('other_charges').value) || 0;
-    
-            var total = doctorCharges + bedCharges + medicineCharges + otherCharges; // Add other charges here
-            document.getElementById('total_amount').innerText = total.toFixed(2);
+
+            var opdTotal = opdDoctorCharges + opdMedicineCharges + opdOtherCharges; // Add other charges here
+            var indoorTotal = indoorDoctorCharges + indoorMedicineCharges + indoorOtherCharges + bedCharges; // Add other charges here
+
+            document.getElementById('opd_total_amount').innerText = opdTotal.toFixed(2);
+            document.getElementById('indoor_total_amount').innerText = indoorTotal.toFixed(2);
         }
-    
+
+        // Function to handle billing option selection
+        document.querySelectorAll('input[name="billing_option"]').forEach((elem) => {
+            elem.addEventListener("change", function(event) {
+                if (event.target.value === "opd") {
+                    document.getElementById("opd_billing_form").style.display = "block";
+                    document.getElementById("indoor_billing_form").style.display = "none";
+                    calculateTotal(); // Recalculate total for OPD billing
+                } else if (event.target.value === "indoor") {
+                    document.getElementById("opd_billing_form").style.display = "none";
+                    document.getElementById("indoor_billing_form").style.display = "block";
+                    calculateTotal(); // Recalculate total for indoor billing
+                }
+            });
+        });
+
+        // Function to validate discharge date
+        function validateDischargeDate() {
+            var dischargeDateInput = document.getElementById('discharge_date');
+            var dischargeDate = new Date(dischargeDateInput.value);
+            var currentDate = new Date();
+
+            if (dischargeDate > currentDate) {
+                alert("Discharge date cannot be in the future.");
+                dischargeDateInput.value = ''; // Clear the input value
+            }
+        }
+
+        // Function to print the bill
         function printBill() {
             window.print();
-        }
-    
-        window.onload = function() {
-            calculateTotal();
         }
     </script>
 </body>
 </html>
-
-
 {% endblock content %}
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-{% include 'footer.html' %}

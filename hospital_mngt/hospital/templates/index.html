@@ -1,42 +1,93 @@
-{%include 'base.html'%}
+{% include 'base.html' %}
 {% load static %}
-{%include 'navigation.html'%}
+{% include 'navigation.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <style>
-    .mydivstyle:hover {
-      box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
-      transform: translateY(-20px);
-  }
-  hr.rounded{
-    border-top: 10px solid lightblue;
-    border-radius: 5px;
-}
-  </style>
-
-
+    body {
+        background-color: #f9f9f9; /* Set background color */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Set font family */
+    }
+    .container {
+        max-width: 1200px; /* Set maximum width for content */
+        margin: 0 auto; /* Center content horizontally */
+        padding: 20px; /* Add padding around content */
+    }
+    h1 {
+        color: #333; /* Set heading color */
+        text-align: center; /* Center align heading */
+        margin-bottom: 40px; /* Add bottom margin to heading */
+    }
+    .card {
+        background-color: #fff; /* Set card background color */
+        border-radius: 10px; /* Add border radius to card */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box shadow to card */
+        padding: 30px; /* Add padding inside card */
+        text-align: center; /* Center text inside card */
+        transition: transform 0.3s ease; /* Add transition effect on hover */
+    }
+    .card:hover {
+        transform: translateY(-10px); /* Move card up on hover */
+    }
+    .card a {
+        color: #007bff; /* Set link color */
+        text-decoration: none; /* Remove underline from links */
+        font-weight: bold; /* Set link text to bold */
+        transition: color 0.3s ease; /* Add transition effect on hover */
+    }
+    .card a:hover {
+        color: #0056b3; /* Change link color on hover */
+    }
+    .card.red {
+        background-color: #ffcccc; /* Set red background color */
+    }
+    .card.green {
+        background-color: #ccffcc; /* Set green background color */
+    }
+    .card.blue {
+        background-color: #cceeff; /* Set blue background color */
+    }
+    .card h2, .card h4 {
+        margin-top: 0; /* Remove top margin from headings */
+        color: #333; /* Set text color */
+    }
+    .card i {
+        font-size: 48px; /* Set font size for icons */
+        margin-bottom: 20px; /* Add margin below icons */
+    }
+</style>
 {% block content %}
-
-<h1 class="text-center">Admin Dashboard</h1>
-<br><br><br><br>
-
 <div class="container">
+    <h1>Admin Dashboard</h1>
     <div class="row">
-        <div class="col-sm-4 mydivstyle">
-            <h2 style="color: red;">{{d}}</h2>
-            <a href="{% url 'view_doctor' %}"><h4 style="color:blue">Doctors</h4><hr class="rounded"></a>
+        <div class="col-md-4">
+            <div class="card red">
+                <i class="fas fa-user-md"></i>
+                <h2>{{ d }}</h2>
+                <a href="{% url 'view_doctor' %}">
+                    <h4>Doctors</h4>
+                </a>
+            </div>
         </div>
-        <div class="col-sm-4 mydivstyle">
-            <h2 style="color: red;">{{p}}</h2>
-            <a href="{% url 'view_patient' %}"><h4 style="color:blue">Patients</h4><hr class="rounded"></a>
+        <div class="col-md-4">
+            <div class="card green">
+                <i class="fas fa-user"></i>
+                <h2>{{ p }}</h2>
+                <a href="{% url 'view_patient' %}">
+                    <h4>Patients</h4>
+                </a>
+            </div>
         </div>
-        <div class="col-sm-4 mydivstyle">
-            <h2 style="color: red;">{{a}}</h2>
-            <a href="{% url 'view_appointment' %}"><h4 style="color:blue">Appointments</h4><hr class="rounded"></a>
+        <div class="col-md-4">
+            <div class="card blue">
+                <i class="fas fa-calendar-alt"></i>
+                <h2>{{ a }}</h2>
+                <a href="{% url 'view_appointment' %}">
+                    <h4>Appointments</h4>
+                </a>
+            </div>
         </div>
     </div>
-
 </div>
-
-
-
 {% endblock %}
 {% include "footer.html" %}

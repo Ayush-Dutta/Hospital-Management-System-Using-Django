@@ -1,51 +1,89 @@
-{%include 'base.html'%}
+{% include 'base.html' %}
 {% load static %}
-{%include 'navigation.html'%}
+{% include 'navigation.html' %}
 
 {% block content %}
-{% if error == "no"%}
+{% if error == "no" %}
 <script>
     alert('Record saved successfully');
-    window.location = "{%url 'view_appointment' %}";
+    window.location = "{% url 'view_appointment' %}";
 </script>
 {% endif %}
 
 {% if error == "yes" %}
 <script>
-    alert('invalid login try again');
+    alert('Invalid login, try again');
 </script>
 {% endif %}
 <div class="container">
     <h2 class="text-center">Add Appointment</h2>
     <form method="POST">
-        {% csrf_token%}
-        <label>Doctor Name</label>
-        <select name="doctor" class="form-control">
-            <option value="" disabled selected>Select an option</option>
-            {% for i in doctor %}
-            <option value="{{ i.Name}}">{{i.Name}}</option>
-            {% endfor %}
-        </select>
+        {% csrf_token %}
         <label>Patient Name</label>
         <select name="patient" class="form-control">
             <option value="" disabled selected>Select an option</option>
             {% for i in patient %}
-            <option value="{{ i.Name}}">{{i.Name}}</option>
+            <option value="{{ i.Name }}">{{ i.Name }}</option>
+            {% endfor %}
+        </select>
+        <label>Doctor Name</label>
+        <select name="doctor" class="form-control">
+            <option value="" disabled selected>Select an option</option>
+            {% for i in doctor %}
+            <option value="{{ i.Name }}">{{ i.Name }}</option>
             {% endfor %}
         </select>
         <label>Date</label>
-        <input type="date" class="form-control" name="date"/>
+        <input type="date" class="form-control" name="date" id="appointment_date" />
         <label>Time</label>
-        <input type="time" class="form-control" name="time"/>
+        <input type="time" class="form-control" name="time" id="appointment_time" />
 
-        <input type="submit" value="submit" class="form-control btn btn-primary"/>
+        <input type="submit" value="Submit" class="form-control btn btn-primary" />
 
     </form>
 
 </div>
 
+<script>
+    // Function to validate appointment date
+    function validateAppointmentDate() {
+        var appointmentDateInput = document.getElementById('appointment_date');
+        var appointmentDate = new Date(appointmentDateInput.value);
+        var currentDate = new Date();
+
+        // Set time of current date to 00:00:00 to compare only dates
+        currentDate.setHours(0, 0, 0, 0);
+
+        if (appointmentDate < currentDate) {
+            alert("Appointment date cannot be in the past.");
+            appointmentDateInput.value = ''; // Clear the input value
+        }
+    }
+
+    // Add event listener to trigger validation on change
+    document.getElementById('appointment_date').addEventListener('change', validateAppointmentDate);
+
+    // Function to validate appointment time
+    function validateAppointmentTime() {
+        var appointmentTimeInput = document.getElementById('appointment_time');
+        var appointmentTime = appointmentTimeInput.value;
+
+        // Get current time in HH:MM format
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var currentTime = (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+
+        if (appointmentTime < currentTime) {
+            alert("Appointment time cannot be in the past.");
+            appointmentTimeInput.value = ''; // Clear the input value
+        }
+    }
+
+    // Add event listener to trigger validation on change
+    document.getElementById('appointment_time').addEventListener('change', validateAppointmentTime);
+</script>
+
 {% endblock content %}
 
-
-
-{%include 'footer.html'%}
+{% include 'footer.html' %}
