@@ -142,6 +142,8 @@
                 <label for="opd_cancer">Cancer</label><br>
                 <input type="checkbox" id="opd_chronic_respiratory_diseases" name="opd_chronic_respiratory_diseases" onclick="showOPDSuggestions('respiratory')">
                 <label for="opd_chronic_respiratory_diseases">Chronic Respiratory Problems</label><br>
+                <input type="checkbox" id="none" name="none" onclick="showSuggestions('none')">
+                <label for="none">None</label><br>
             </div>
         </form>
         
@@ -178,8 +180,9 @@
                 </tr>
                 <tr>
                     <td>Date Of Admission</td>
-                    <td><input type="date" id="admission_date" name="admission_date"></td>
+                    <td><input type="date" id="admission_date" name="admission_date" onchange="validateAdmissionDate()"></td>
                 </tr>
+                
                 <tr>
                     <td>Date Of Discharge</td>
                     <td><input type="date" id="discharge_date" name="discharge_date" onchange="validateDischargeDate()"></td>
@@ -220,13 +223,15 @@
                 <label for="cancer">Cancer</label><br>
                 <input type="checkbox" id="indoor_chronic_respiratory_diseases" name="chronic_respiratory_diseases" onclick="showSuggestions('respiratory')">
                 <label for="chronic_respiratory_diseases">Chronic Respiratory Problems</label><br>
+                <input type="checkbox" id="none" name="none" onclick="showSuggestions('none')">
+                <label for="none">None</label><br>
             </div>
         </form>
 
         <!-- Text Box for Suggestions and Prescribed Medications -->
         <div id="suggestions-box" style="display: none;">
             <h3>Suggestions and Prescribed Medications:</h3>
-            <textarea id="suggestions-textarea" rows="4" cols="50" readonly></textarea>
+            <textarea id="suggestions-textarea" rows="10" cols="50" ></textarea>
         </div>
         
         <!-- Print / Download PDF button -->
@@ -235,10 +240,10 @@
         </div>
     </div>
 
-    <script>
+ <script>
         // Populate date field with today's date
         document.getElementById('opd_date').valueAsDate = new Date();
-        document.getElementById('admission_date').valueAsDate = new Date();
+        //document.getElementById('admission_date').valueAsDate = new Date();
 
         // Function to calculate total amount
         function calculateTotal() {
@@ -268,27 +273,37 @@
             // Populate suggestions and prescribed medications based on selected disease for OPD billing
             switch (disease) {
                 case 'diabetes':
-                    suggestionsTextarea.value = "Suggestions:\n- Maintain a healthy diet rich in fruits, vegetables, and whole grains.\n- Engage in regular physical activity.\n\nPrescribed Medications:\n- Metformin\n- Insulin";
-                    break;
-                case 'hypertension':
-                    suggestionsTextarea.value = "Suggestions:\n- Reduce sodium intake.\n- Engage in regular aerobic exercise.\n\nPrescribed Medications:\n- ACE inhibitors\n- Beta-blockers";
-                    break;
-                case 'asthma':
-                    suggestionsTextarea.value = "Suggestions:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\nPrescribed Medications:\n- Albuterol\n- Inhaled corticosteroids";
-                    break;
-                case 'cardiovascular':
-                    suggestionsTextarea.value = "Suggestions:\n- Follow a heart-healthy diet.\n- Exercise regularly.\n\nPrescribed Medications:\n- Statins\n- Beta-blockers";
-                    break;
-                case 'cancer':
-                    suggestionsTextarea.value = "Suggestions:\n- Follow treatment plan recommended by oncologist.\n- Seek support from friends and family.\n\nPrescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs";
-                    break;
-                case 'respiratory':
-                    suggestionsTextarea.value = "Suggestions:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\nPrescribed Medications:\n- Bronchodilators\n- Corticosteroids";
-                    break;
-                default:
-                    suggestionsTextarea.value = "No suggestions available.";
-                    break;
-            }
+            suggestionsTextarea.value += "Suggestions:\n- Maintain a healthy diet rich in fruits, vegetables, and whole grains.\n- Engage in regular physical activity.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Metformin\n- Insulin";
+            break;
+        case 'hypertension':
+            suggestionsTextarea.value += "Suggestions:\n- Reduce sodium intake.\n- Engage in regular aerobic exercise.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- ACE inhibitors\n- Beta-blockers";
+            break;
+        case 'asthma':
+            suggestionsTextarea.value += "Suggestions:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Albuterol\n- Inhaled corticosteroids";
+            break;
+        case 'cardiovascular':
+            suggestionsTextarea.value += "Suggestions:\n- Follow a heart-healthy diet.\n- Exercise regularly.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Statins\n- Beta-blockers";
+            break;
+        case 'cancer':
+            suggestionsTextarea.value += "Suggestions:\n- Follow treatment plan recommended by oncologist.\n- Seek support from friends and family.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs";
+            break;
+        case 'respiratory':
+            suggestionsTextarea.value += "Suggestions:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Bronchodilators\n- Corticosteroids";
+            break;
+        case 'none':
+            suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
+            suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
+            break;
+        default:
+            suggestionsTextarea.value = "No suggestions available.You are Fit n Fine";
+            break;
+        }
 
             // Show the suggestions box
             suggestionsBox.style.display = 'block';
@@ -322,6 +337,10 @@
                 case 'respiratory':
                     suggestionsTextarea.value = "Suggestions:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\nPrescribed Medications:\n- Bronchodilators\n- Corticosteroids";
                     break;
+                case 'none':
+                    suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
+                    suggestionsTextarea.value += "";
+                    break;
                 default:
                     suggestionsTextarea.value = "No suggestions available.";
                     break;
@@ -345,6 +364,18 @@
                 }
             });
         });
+
+        // Function to validate admission date
+        function validateAdmissionDate() {
+            var admissionDateInput = document.getElementById('admission_date');
+            var admissionDate = new Date(admissionDateInput.value);
+            var currentDate = new Date();
+
+            if (admissionDate > currentDate) {
+                alert("Admission date cannot be in the future.");
+                admissionDateInput.value = ''; // Clear the input value
+            }
+        }
 
         // Function to validate discharge date
         function validateDischargeDate() {
