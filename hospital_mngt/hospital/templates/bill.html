@@ -142,7 +142,7 @@
                 <label for="opd_cancer">Cancer</label><br>
                 <input type="checkbox" id="opd_chronic_respiratory_diseases" name="opd_chronic_respiratory_diseases" onclick="showOPDSuggestions('chronic_respiratory_diseases')">
                 <label for="opd_chronic_respiratory_diseases">Chronic Respiratory Problems</label><br>
-                <input type="checkbox" id="none" name="none" onclick="showSuggestions('none')">
+                <input type="checkbox" id="none" name="none" onclick="showOPDSuggestions('none')">
                 <label for="none">None</label><br>
             </div>
         </form>
@@ -287,7 +287,7 @@
             suggestionsTextarea.value += "Prescribed Medications:\n- ACE inhibitors\n- Beta-blockers\n\n";
             break;
         case 'asthma':
-            suggestionsTextarea.value += "Suggestions for asthema:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\n";
+            suggestionsTextarea.value += "Suggestions for asthma:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\n";
             suggestionsTextarea.value += "Prescribed Medications:\n- Albuterol\n- Inhaled corticosteroids\n\n";
             break;
         case 'cardiovascular_diseases':
@@ -299,13 +299,13 @@
             suggestionsTextarea.value += "Prescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs\n\n";
             break;
         case 'chronic_respiratory_diseases':
-            suggestionsTextarea.value += "Suggestions for resoiratory:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\n";
+            suggestionsTextarea.value += "Suggestions for respiratory:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\n";
             suggestionsTextarea.value += "Prescribed Medications:\n- Bronchodilators\n- Corticosteroids\n\n";
             break;
         case 'none':
-            suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
-            suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
+            suggestionsTextarea.value = "You are Absolutely Fit n Fine!!!";
             break;
+        
         default:
             suggestionsTextarea.value = "No suggestions available.You are Fit n Fine";
             break;
@@ -342,7 +342,7 @@
             suggestionsTextarea.value += "Prescribed Medications:\n- ACE inhibitors\n- Beta-blockers\n\n";
             break;
         case 'asthma':
-            suggestionsTextarea.value += "Suggestions for asthema:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\n";
+            suggestionsTextarea.value += "Suggestions for asthma:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\n";
             suggestionsTextarea.value += "Prescribed Medications:\n- Albuterol\n- Inhaled corticosteroids\n\n";
             break;
         case 'cardiovascular_diseases':
@@ -354,13 +354,13 @@
             suggestionsTextarea.value += "Prescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs\n\n";
             break;
         case 'chronic_respiratory_diseases':
-            suggestionsTextarea.value += "Suggestions for resoiratory:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\n";
+            suggestionsTextarea.value += "Suggestions for respiratory:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\n";
             suggestionsTextarea.value += "Prescribed Medications:\n- Bronchodilators\n- Corticosteroids\n\n";
             break;
         case 'none':
-            suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
-            suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
+            suggestionsTextarea.value = "You are Absolutely Fit n Fine!!!";
             break;
+        
         default:
             suggestionsTextarea.value = "No suggestions available.You are Fit n Fine";
             break;
