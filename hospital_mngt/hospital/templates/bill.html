@@ -136,11 +136,11 @@
                 <label for="opd_hypertension">Hypertension</label><br>
                 <input type="checkbox" id="opd_asthma" name="opd_asthma" onclick="showOPDSuggestions('asthma')">
                 <label for="opd_asthma">Asthma</label><br>
-                <input type="checkbox" id="opd_cardiovascular_diseases" name="opd_cardiovascular_diseases" onclick="showOPDSuggestions('cardiovascular')">
+                <input type="checkbox" id="opd_cardiovascular_diseases" name="opd_cardiovascular_diseases" onclick="showOPDSuggestions('cardiovascular_diseases')">
                 <label for="opd_cardiovascular_diseases">Cardiovascular Problems</label><br>
                 <input type="checkbox" id="opd_cancer" name="opd_cancer" onclick="showOPDSuggestions('cancer')">
                 <label for="opd_cancer">Cancer</label><br>
-                <input type="checkbox" id="opd_chronic_respiratory_diseases" name="opd_chronic_respiratory_diseases" onclick="showOPDSuggestions('respiratory')">
+                <input type="checkbox" id="opd_chronic_respiratory_diseases" name="opd_chronic_respiratory_diseases" onclick="showOPDSuggestions('chronic_respiratory_diseases')">
                 <label for="opd_chronic_respiratory_diseases">Chronic Respiratory Problems</label><br>
                 <input type="checkbox" id="none" name="none" onclick="showSuggestions('none')">
                 <label for="none">None</label><br>
@@ -211,19 +211,19 @@
             <!-- Remarks Section -->
             <div class="remarks">
                 <h3>Diagnosed With:</h3>
-                <input type="checkbox" id="indoor_diabetes" name="indoor_diabetes" onclick="showSuggestions('diabetes')">
+                <input type="checkbox" id="indoor_diabetes" name="indoor_diabetes" onclick="showSuggestions('diabetes')" >
                 <label for="indoor_diabetes">Diabetes</label><br>
-                <input type="checkbox" id="indoor_hypertension" name="indoor_hypertension" onclick="showSuggestions('hypertension')">
+                <input type="checkbox" id="indoor_hypertension" name="indoor_hypertension" onclick="showSuggestions('hypertension')" >
                 <label for="indoor_hypertension">Hypertension</label><br>
                 <input type="checkbox" id="indoor_asthma" name="indoor_asthma" onclick="showSuggestions('asthma')">
                 <label for="indoor_asthma">Asthma</label><br>
-                <input type="checkbox" id="indoor_cardiovascular_diseases" name="cardiovascular_diseases" onclick="showSuggestions('cardiovascular')">
+                <input type="checkbox" id="indoor_cardiovascular_diseases" name="cardiovascular_diseases" onclick="showSuggestions('cardiovascular_diseases')">
                 <label for="cardiovascular_diseases">Cardiovascular Problems</label><br>
                 <input type="checkbox" id="indoor_cancer" name="cancer" onclick="showSuggestions('cancer')">
                 <label for="cancer">Cancer</label><br>
-                <input type="checkbox" id="indoor_chronic_respiratory_diseases" name="chronic_respiratory_diseases" onclick="showSuggestions('respiratory')">
+                <input type="checkbox" id="indoor_chronic_respiratory_diseases" name="chronic_respiratory_diseases" onclick="showSuggestions('chronic_respiratory_diseases')" >
                 <label for="chronic_respiratory_diseases">Chronic Respiratory Problems</label><br>
-                <input type="checkbox" id="none" name="none" onclick="showSuggestions('none')">
+                <input type="checkbox" id="none" name="none" onclick="showSuggestions('none')" >
                 <label for="none">None</label><br>
             </div>
         </form>
@@ -266,35 +266,41 @@
         function showOPDSuggestions(disease) {
             var suggestionsBox = document.getElementById('suggestions-box');
             var suggestionsTextarea = document.getElementById('suggestions-textarea');
+            var checkbox = document.getElementById("opd_"+disease);
+            if(!checkbox.checked)
+            {
+                suggestionsTextarea.value="";
+            }
 
             // Reset suggestions and prescribed medications textarea
-            suggestionsTextarea.value = '';
+           // suggestionsTextarea.value = '';
 
             // Populate suggestions and prescribed medications based on selected disease for OPD billing
+            else{
             switch (disease) {
                 case 'diabetes':
-            suggestionsTextarea.value += "Suggestions:\n- Maintain a healthy diet rich in fruits, vegetables, and whole grains.\n- Engage in regular physical activity.\n\n";
-            suggestionsTextarea.value += "Prescribed Medications:\n- Metformin\n- Insulin";
+            suggestionsTextarea.value += "Suggestions for diabetes:\n- Maintain a healthy diet rich in fruits, vegetables, and whole grains.\n- Engage in regular physical activity.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Metformin\n- Insulin\n\n";
             break;
         case 'hypertension':
-            suggestionsTextarea.value += "Suggestions:\n- Reduce sodium intake.\n- Engage in regular aerobic exercise.\n\n";
-            suggestionsTextarea.value += "Prescribed Medications:\n- ACE inhibitors\n- Beta-blockers";
+            suggestionsTextarea.value += "Suggestions for hypertension:\n- Reduce sodium intake.\n- Engage in regular aerobic exercise.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- ACE inhibitors\n- Beta-blockers\n\n";
             break;
         case 'asthma':
-            suggestionsTextarea.value += "Suggestions:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\n";
-            suggestionsTextarea.value += "Prescribed Medications:\n- Albuterol\n- Inhaled corticosteroids";
+            suggestionsTextarea.value += "Suggestions for asthema:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Albuterol\n- Inhaled corticosteroids\n\n";
             break;
-        case 'cardiovascular':
-            suggestionsTextarea.value += "Suggestions:\n- Follow a heart-healthy diet.\n- Exercise regularly.\n\n";
-            suggestionsTextarea.value += "Prescribed Medications:\n- Statins\n- Beta-blockers";
+        case 'cardiovascular_diseases':
+            suggestionsTextarea.value += "Suggestions for cardiovascular:\n- Follow a heart-healthy diet.\n- Exercise regularly.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Statins\n- Beta-blockers\n\n";
             break;
         case 'cancer':
-            suggestionsTextarea.value += "Suggestions:\n- Follow treatment plan recommended by oncologist.\n- Seek support from friends and family.\n\n";
-            suggestionsTextarea.value += "Prescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs";
+            suggestionsTextarea.value += "Suggestions for cancer:\n- Follow treatment plan recommended by oncologist.\n- Seek support from friends and family.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs\n\n";
             break;
-        case 'respiratory':
-            suggestionsTextarea.value += "Suggestions:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\n";
-            suggestionsTextarea.value += "Prescribed Medications:\n- Bronchodilators\n- Corticosteroids";
+        case 'chronic_respiratory_diseases':
+            suggestionsTextarea.value += "Suggestions for resoiratory:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Bronchodilators\n- Corticosteroids\n\n";
             break;
         case 'none':
             suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
@@ -304,6 +310,7 @@
             suggestionsTextarea.value = "No suggestions available.You are Fit n Fine";
             break;
         }
+    }
 
             // Show the suggestions box
             suggestionsBox.style.display = 'block';
@@ -313,42 +320,59 @@
         function showSuggestions(disease) {
             var suggestionsBox = document.getElementById('suggestions-box');
             var suggestionsTextarea = document.getElementById('suggestions-textarea');
+            var checkbox = document.getElementById("indoor_"+disease);
+            if(!checkbox.checked)
+            {
+                suggestionsTextarea.value="";
+            }
+
 
             // Reset suggestions and prescribed medications textarea
-            suggestionsTextarea.value = '';
+           // suggestionsTextarea.value = '';
 
             // Populate suggestions and prescribed medications based on selected disease for Indoor billing
+            else{
             switch (disease) {
-                case 'diabetes':
-                    suggestionsTextarea.value = "Suggestions:\n- Maintain a healthy diet rich in fruits, vegetables, and whole grains.\n- Engage in regular physical activity.\n\nPrescribed Medications:\n- Metformin\n- Insulin";
-                    break;
-                case 'hypertension':
-                    suggestionsTextarea.value = "Suggestions:\n- Reduce sodium intake.\n- Engage in regular aerobic exercise.\n\nPrescribed Medications:\n- ACE inhibitors\n- Beta-blockers";
-                    break;
-                case 'asthma':
-                    suggestionsTextarea.value = "Suggestions:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\nPrescribed Medications:\n- Albuterol\n- Inhaled corticosteroids";
-                    break;
-                case 'cardiovascular':
-                    suggestionsTextarea.value = "Suggestions:\n- Follow a heart-healthy diet.\n- Exercise regularly.\n\nPrescribed Medications:\n- Statins\n- Beta-blockers";
-                    break;
-                case 'cancer':
-                    suggestionsTextarea.value = "Suggestions:\n- Follow treatment plan recommended by oncologist.\n- Seek support from friends and family.\n\nPrescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs";
-                    break;
-                case 'respiratory':
-                    suggestionsTextarea.value = "Suggestions:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\nPrescribed Medications:\n- Bronchodilators\n- Corticosteroids";
-                    break;
-                case 'none':
-                    suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
-                    suggestionsTextarea.value += "";
-                    break;
-                default:
-                    suggestionsTextarea.value = "No suggestions available.";
-                    break;
+        case 'diabetes':
+            suggestionsTextarea.value += "Suggestions for diabetes:\n- Maintain a healthy diet rich in fruits, vegetables, and whole grains.\n- Engage in regular physical activity.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Metformin\n- Insulin\n\n";
+            break;
+        case 'hypertension':
+            suggestionsTextarea.value += "Suggestions for hypertension:\n- Reduce sodium intake.\n- Engage in regular aerobic exercise.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- ACE inhibitors\n- Beta-blockers\n\n";
+            break;
+        case 'asthma':
+            suggestionsTextarea.value += "Suggestions for asthema:\n- Avoid triggers such as smoke and allergens.\n- Use inhalers as prescribed.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Albuterol\n- Inhaled corticosteroids\n\n";
+            break;
+        case 'cardiovascular_diseases':
+            suggestionsTextarea.value += "Suggestions for cardiovascular:\n- Follow a heart-healthy diet.\n- Exercise regularly.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Statins\n- Beta-blockers\n\n";
+            break;
+        case 'cancer':
+            suggestionsTextarea.value += "Suggestions for cancer:\n- Follow treatment plan recommended by oncologist.\n- Seek support from friends and family.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Chemotherapy drugs\n- Targeted therapy drugs\n\n";
+            break;
+        case 'chronic_respiratory_diseases':
+            suggestionsTextarea.value += "Suggestions for resoiratory:\n- Avoid smoke and pollutants.\n- Use respiratory aids as prescribed.\n\n";
+            suggestionsTextarea.value += "Prescribed Medications:\n- Bronchodilators\n- Corticosteroids\n\n";
+            break;
+        case 'none':
+            suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
+            suggestionsTextarea.value += "You are Absolutely Fit n Fine!!!";
+            break;
+        default:
+            suggestionsTextarea.value = "No suggestions available.You are Fit n Fine";
+            break;
+        }
             }
+
 
             // Show the suggestions box
             suggestionsBox.style.display = 'block';
         }
+
+
 
         // Function to handle billing option selection
         document.querySelectorAll('input[name="billing_option"]').forEach((elem) => {
